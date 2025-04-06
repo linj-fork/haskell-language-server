@@ -1,1 +1,0 @@
-cradle: {direct: {arguments: ["-package template-haskell", "THA", "THB", "THC"]}}
