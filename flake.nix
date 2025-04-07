@@ -79,6 +79,8 @@
             capstone
             stylish-haskell
             pre-commit
+            hpkgs.haskell-language-server
+            hpkgs.ghcid
             ] ++ lib.optionals (!stdenv.isDarwin)
                    [ # tracy has a build problem on macos.
                      tracy
