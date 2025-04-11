@@ -91,14 +91,35 @@
           '';
         };
 
+        mkDevShellDepFromNix = hpkgs: hpkgs.shellFor {
+          packages = hpkgs': [ hpkgs'.haskell-language-server ];
+          nativeBuildInputs = [
+            hpkgs.cabal-install
+            hpkgs.ghcid
+            hpkgs.haskell-language-server
+            hpkgs.stylish-haskell
+          ] ++ [
+            pkgs.capstone
+            pkgs.nixfmt-rfc-style
+            pkgs.pre-commit
+          ];
+          buildInputs = [ ];
+          withHoogle = true;
+        };
+
       in rec {
         # Developement shell with only dev tools
         devShells = {
           default = mkDevShell pkgs.haskellPackages;
+          default-nix = mkDevShellDepFromNix pkgs.haskellPackages;
           shell-ghc94 = mkDevShell pkgs.haskell.packages.ghc94;
           shell-ghc96 = mkDevShell pkgs.haskell.packages.ghc96;
           shell-ghc98 = mkDevShell pkgs.haskell.packages.ghc98;
           shell-ghc910 = mkDevShell pkgs.haskell.packages.ghc910;
+          shell-ghc96-nix = mkDevShellDepFromNix pkgs.haskell.packages.ghc96;
+          shell-ghc98-nix = mkDevShellDepFromNix pkgs.haskell.packages.ghc98;
+          shell-ghc910-nix = mkDevShellDepFromNix pkgs.haskell.packages.ghc910;
+          shell-ghc912-nix = mkDevShellDepFromNix pkgs.haskell.packages.ghc912;
         };
 
         packages = { inherit docs; };
