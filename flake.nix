@@ -2,7 +2,7 @@
   description = "haskell-language-server development flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/haskell-updates";
     flake-utils.url = "github:numtide/flake-utils";
     # For default.nix
     flake-compat = {
